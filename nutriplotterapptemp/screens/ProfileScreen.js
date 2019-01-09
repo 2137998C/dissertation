@@ -1,0 +1,180 @@
+import { ExpoConfigView } from "@expo/samples";
+import React, { Component } from "react";
+//import { createStackNavigator, createAppContainer } from "react-navigation";
+
+import Timeline from "react-native-timeline-listview";
+
+import {
+  ActivityIndicator,
+  Dimensions,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Switch,
+  Text,
+  TextInput,
+  View
+} from "react-native";
+
+import StatsScreen from "../screens/StatsScreen";
+
+/*const statsStack = createStackNavigator({
+  Stats: { screen: StatsScreen }
+}); */
+
+export default class ProfileScreen extends Component {
+  static navigationOptions = {
+    title: "My Profile"
+  };
+
+  constructor() {
+    super();
+    this.data = [
+      {
+        time: "🥇",
+        title: "Points",
+        description: "You have earned a total of 890 points"
+      },
+      {
+        time: "🍽️",
+        title: "Plates",
+        description: "You've made a total of 69 plates"
+      },
+      {
+        time: "🏆",
+        title: "Score",
+        description: "Your overrall score is 65"
+      }
+    ];
+  }
+
+  render() {
+    const { navigate } = this.props.navigation;
+    return (
+      <ScrollView>
+        <View style={styles.header} />
+        <Image
+          style={styles.avatar}
+          source={require("../assets/images/avatar.png")}
+        />
+
+        <View style={styles.body}>
+          <Text style={styles.name}>John James</Text>
+          <Text style={styles.info}>Student / Healthy Eater</Text>
+          <Text style={styles.description}>
+            Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum
+            electram expetendis, omittam deseruisse consequuntur ius an,
+          </Text>
+          <Text style={styles.userstats}>User Stats</Text>
+          <View style={styles.container}>
+            <Timeline style={styles.list} data={this.data} />
+          </View>
+        </View>
+      </ScrollView>
+    );
+  }
+}
+
+//code for text that is not needed
+/* <Text style={styles.name}>John Doe</Text>
+            <Text style={styles.info}>UX Designer / Mobile developer</Text>
+            <Text style={styles.description}>
+              Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum
+              electram expetendis, omittam deseruisse consequuntur ius an,
+            </Text>
+*/
+
+//code for buttons that are not needed just now
+
+/* <TouchableOpacity style={styles.buttonContainer}>
+<Text>Shopping List</Text>
+</TouchableOpacity>
+<TouchableOpacity
+style={styles.buttonContainer}
+onPress={() => navigate("Stats")}
+>
+<Text>User Stats</Text>
+</TouchableOpacity> */
+
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: "#00BFFF",
+    height: 200
+  },
+  avatar: {
+    width: 130,
+    height: 130,
+    borderRadius: 63,
+    borderWidth: 4,
+    borderColor: "white",
+    marginBottom: 10,
+    alignSelf: "center",
+    position: "absolute",
+    marginTop: 130
+  },
+  //name: {
+  // fontSize: 22,
+  //color: "#FFFFFF",
+  // fontWeight: "600"
+  //},
+  userstats: {
+    fontSize: 20,
+    marginTop: 10,
+    padding: 10,
+    fontWeight: "600",
+    textAlign: "left"
+  },
+  body: {
+    marginTop: 40
+  },
+  bodyContent: {
+    marginTop: 40,
+    flex: 1,
+    textAlign: "center",
+    padding: 30
+  },
+  name: {
+    fontSize: 28,
+    marginTop: 40,
+    //color: "#696969",
+    textAlign: "center",
+    fontWeight: "600"
+  },
+  info: {
+    fontSize: 16,
+    color: "#00BFFF",
+    textAlign: "center",
+    marginTop: 10
+  },
+  description: {
+    fontSize: 16,
+    //color: "#696969",
+    marginTop: 10,
+    textAlign: "center"
+  },
+  buttonContainer: {
+    marginTop: 10,
+    height: 45,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 20,
+    width: 250,
+    borderRadius: 30,
+    backgroundColor: "#00BFFF"
+  },
+  stage: {
+    backgroundColor: "#EFEFF4",
+    paddingTop: 20,
+    paddingBottom: 20
+  },
+  container: {
+    flex: 1,
+    padding: 20,
+    paddingTop: 10
+  },
+  list: {
+    flex: 1,
+    marginTop: 10
+  }
+});
