@@ -8,6 +8,10 @@ import {
 } from 'react-native';
 import SettingsList from 'react-native-settings-list';
 
+
+import {styles} from '../assets/stylesheets/SettingsScreenStyle';
+
+
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
     title: 'Settings',
@@ -71,9 +75,3 @@ export default class SettingsScreen extends React.Component {
     );
   }
 }
-const styles = StyleSheet.create ({
-  container: {
-     flex: 1,
-     marginTop: 100
-  }
-})
