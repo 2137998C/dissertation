@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import List from '../components/FoodList.js'
 import {
   Image,
@@ -14,20 +14,18 @@ import {
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
+import Plate from '../components/Plate';
 
-export default class HomeScreen extends React.Component {
+export default class HomeScreen extends Component {
   static navigationOptions = {
-    //header: null,
-	title: 'Build A Plate',
+	  title: 'Build A Plate',
   };
   
   state = { }
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="position" contentContainerStyle={styles.container}>
-	    <TouchableOpacity activeOpacity = { .5 } onPress={ this.plateClicked } style={styles.container}>
-	      <Image style={styles.image} source={require('../assets/images/plate.png')}/>
-	    </TouchableOpacity>
+	    <Plate/>
 	    <Text style={styles.title}>Enter a food:</Text> 
 		<View style={styles.list}>
 			<List style={styles.list}/>
@@ -36,15 +34,6 @@ export default class HomeScreen extends React.Component {
 	  );
   };
   
-  plateClicked(){
-	  alert("Plate clicked");
-  }
-  
-	/*
-	<TouchableOpacity onPress={this.onPress}>
-	  <Text style={styles.buttonText}>Add Food</Text>
-	</TouchableOpacity>
-	*/
   
 };
 
