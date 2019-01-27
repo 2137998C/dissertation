@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { Text, ScrollView, TouchableOpacity, StyleSheet, View, TextInput } from 'react-native'
 import { WebBrowser, SQLite } from 'expo';
 
+
+import {SearchBar} from 'react-native-elements';
+
+
 const db = SQLite.openDatabase('db.db');
    
 class List extends Component {
@@ -41,14 +45,19 @@ class List extends Component {
 			var protein = JSON.parse(results).rows._array[0].protein;
 			alert("Calories: " + kcals + " Carbs: " + carbs + " Fats: " + fats + " Protein: " + protein);
 		});
-   };
+	};
+	
+
+	onClearText(){}
+
+
    onChangeText = name => {
 	  this.setState({ name });
 	  if(name.length > 2 || name.length == 0){
 		this.search(name);
 	  }
    };
-   render() {
+   render() {/*
       return (
 	    <View>
 		 <TextInput
@@ -73,10 +82,40 @@ class List extends Component {
          </ScrollView>
 		 <Text style={styles.checkDB}>{this.state.test}</Text>
 	    </View>
-      )
+		)*/
+		
+
+	   return (
+			<View>
+				<SearchBar placeholder="Enter a food"
+					noIcon
+					lightTheme
+					onChangeText = {this.onChangeText}
+					onClearText = {this.onClearText}
+					containerStyle={styles.nameInput}
+				/>
+
+				<ScrollView style = {styles.scrollStyle}>
+            {
+               JSON.parse(this.state.names).map((item, index) => (
+                  <TouchableOpacity
+                     key = {item.id}
+                     style = {styles.container}
+                     onPress = {() => this.alertItemName(item)}>
+                     <Text style = {styles.text}>
+                        {item.name}
+                     </Text>
+                  </TouchableOpacity>
+               ))
+            }
+         </ScrollView>
+		 <Text style={styles.checkDB}>{this.state.test}</Text>
+	    </View>
+		)
+
    }
    
-       search = searchString => {
+   search = searchString => {
 		var dbQuery = 'select name from foods;';
 		var promise = new Promise(function (resolve, reject) {
 			db.transaction(function (transaction) {
@@ -153,8 +192,8 @@ const styles = StyleSheet.create ({
      height: '15%',
      margin: '5%',
      paddingHorizontal: '5%',
-     borderColor: '#111111',
-     borderWidth: 1,
+     //borderColor: '#111111',
+     //borderWidth: 1,
   },
 
 

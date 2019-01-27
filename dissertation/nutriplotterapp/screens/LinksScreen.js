@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Constants, WebBrowser } from 'expo';
-import {Linking, Text, View, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
+import {Linking, Text, View, TouchableOpacity, ScrollView} from 'react-native';
 import { MonoText } from '../components/StyledText';
 
 import {styles} from '../assets/stylesheets/LinksScreenStyle';
